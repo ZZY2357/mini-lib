@@ -6,7 +6,7 @@ def readFile(path):
 
 
 def writeData(data):
-    with open('./books.json', 'w') as f:
+    with open('./books.json', 'w', encoding='utf-8') as f:
         f.write(
             json.dumps(
                 data, 

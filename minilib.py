@@ -1,4 +1,4 @@
-# Author: 周子阳
+#!/usr/bin/python3
 
 import platform
 import os
@@ -65,7 +65,7 @@ while True:
 
 print('你好！要图书助手帮你做什么: ')
 while True:
-    message = input(''.center(108, '=') + '\n\tquit: 结束管理图书\n \t0: 展示书单\n \t1: 借书\n \t2: 还书\n 输入选项: ')
+    message = input(''.center(108, '=') + '\n\tquit: 结束管理图书\n \t0: 展示书单\n \t1: 借书\n \t2: 还书\n \t3: 管理员菜单\n 输入选项: ')
     clear()
     book.writeData(lib)
     if message == 'quit':  # 结束管理图书
@@ -126,5 +126,27 @@ while True:
             print('好的')
             lib[numOfTheBookToReturn]['isBorrowed'] = False
 
+    elif message == '3':
+        if nowUserIs.admin != True:
+            print('你不是管理员哦！')
+            continue
+        print('执行: 管理员菜单')
+        option = input('\t0: 添加图书\n \t1: 删除图书\n')
+        if option == '0':
+            lib.append({
+                'isBorrowed': False,
+                'name': input('书的名称: ')
+            })
+        elif option == '1':
+            for i in range(len(lib)):
+                print('\t{}: {}'.format(i, lib[i]['name']))
+            try:
+                numOfTheBookToDelete = int(input('书的编号: '))
+                del lib[numOfTheBookToDelete]
+            except:
+                print('出错了哦！')
+        else:
+            print('不能这么干')
+            continue
     
 

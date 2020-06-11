@@ -30,6 +30,7 @@ def dataToUserObjAndAdd(userName, password):
     return _data
 
 def allThedataToUserObj():
+    global userObj
     userObj = []
     for i in jsonOfUsers:
         dataToUserObjAndAdd(i['userName'], i['password'])
@@ -37,6 +38,9 @@ def allThedataToUserObj():
 class User:
     def __init__(self, userName, password):
         self.books = []
+        self.admin = False
+        if userName == 'admin':
+            self.admin = True
         self.userName = userName
         self.password = password
 
